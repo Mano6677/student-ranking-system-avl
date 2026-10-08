@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Student Marks Ranking — AVL Tree (Insert/Delete, C++/WASM)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>📊 Student Marks Ranking <span>· AVL Tree</span></h1>
+    <div class="badge" id="countBadge">0 students</div>
+  </header>
+  <div class="engine-badge">⚙️ Engine: your original C++ (compiled to WebAssembly) — insert, delete & rotations all run for real, not re-implemented in JS</div>
+
+  <div id="appRoot" style="display:none;">
+  <div class="grid">
+    <div class="card">
+      <h2>Add Student</h2>
+      <label>Roll No</label>
+      <input type="number" id="rollNo" placeholder="e.g. 101">
+      <label>Name</label>
+      <input type="text" id="studentName" placeholder="e.g. Mano">
+      <label>Marks</label>
+      <input type="number" id="marks" placeholder="0 – 100">
+      <button class="btn" id="addBtn">➕ Insert into AVL Tree</button>
+      <div class="msg" id="addMsg"></div>
+
+      <h2 style="margin-top:24px;">Delete Student</h2>
+      <label>Marks to Delete</label>
+      <input type="number" id="deleteMarks" placeholder="0 – 100">
+      <button class="btn danger" id="deleteBtn">➖ Delete from AVL Tree</button>
+      <div class="msg" id="deleteMsg"></div>
+
+      <button class="btn secondary" id="sampleBtn" style="margin-top:22px;">✨ Load Sample Data</button>
+      <button class="btn danger" id="resetBtn">🗑️ Reset All</button>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <div class="tab active" data-tab="tree">🌳 Tree View</div>
+        <div class="tab" data-tab="ranking">🏆 Ranking</div>
+        <div class="tab" data-tab="search">🔍 Search</div>
+        <div class="tab" data-tab="topper">👑 Topper</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num" id="statCount">0</div><div class="lbl">Students</div></div>
+        <div class="stat"><div class="num" id="statHeight">0</div><div class="lbl">Tree Height</div></div>
+        <div class="stat"><div class="num" id="statAvg">–</div><div class="lbl">Avg Marks</div></div>
+      </div>
+      <div class="panel active" id="panel-tree">
+        <div id="treeSvgWrap"><div class="empty">No students yet — add one on the left, or load sample data.</div></div>
+        <div id="rotationLogWrap" style="margin-top:14px;"></div>
+        <div id="whyRotateWrap"></div>
+      </div>
+      <div class="panel" id="panel-ranking">
+        <div id="rankingBody"><div class="empty">No ranking to show yet.</div></div>
+      </div>
+      <div class="panel" id="panel-search">
+        <label>Enter Roll No</label>
+        <input type="number" id="searchRoll" placeholder="e.g. 101">
+        <button class="btn" id="searchBtn">🔍 Search Student</button>
+        <div class="search-result" id="searchResult"></div>
+      </div>
+      <div class="panel" id="panel-topper">
+        <div id="topperBody"><div class="empty">No topper yet — add students first.</div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="loadingRoot" class="loading-overlay">
+    <div class="spinner"></div>
+    Compiling & starting the C++ (WebAssembly) engine…
+  </div>
+
+  <footer>Core logic (Student struct, insert, delete, rotations, ranking, search, topper) is your original C++ compiled to WebAssembly — not reimplemented in JavaScript.</footer>
+</div>
+
+<script src="rotation_steps.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
